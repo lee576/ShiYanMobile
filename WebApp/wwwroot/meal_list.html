@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>湖北若火</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!--<meta name="viewport" content="width=1170">-->
+    <link href="./cont/index.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./cont/cp_list.css">
+    <script type="text/javascript" src="./cont/jquery.min.js"></script>
+    <script src="./lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <!--<script type="text/javascript" src="./cont/Jaiden.common.js"></script>-->
+    <script src="./js/webapi.js"></script>
+    <script src="./lib/layer/2.4/layer.js"></script>
+    <link href="./cont/bootstrap.min.css" rel="stylesheet">
+    <link href="./cont/layout.css" rel="stylesheet">
+    <link href="css/css.css" rel="stylesheet">
+    <link href="lib/capital.css" rel="stylesheet">
+    <link href="css/H-ui.min.css" rel="stylesheet" />
+    <link href="css/H-ui.admin.css" rel="stylesheet" />
+    <link href="css/skin.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+<body style="background: #edf1f5">
+    <div class="page-container" style="margin:15px 20px;">
+        <div class="homeco" style="margin-top: 20px; padding-bottom: 10px;">
+            <form id="exportForm" method="post" onsubmit="return false;">
+                <div class="clearfix">
+                    <div class="fl bu4">
+                        <input id="nameOrMobile" name="nameOrMobile" class="fl sear1" type="text" placeholder="请输入姓名或手机号">
+                    </div>
+                    <div class="ant-form-item-control has-success fl">
+                        <span class="width-full ant-calendar-picker fl">
+                            <span class="ant-calendar-picker-input ant-input ant-input-lg">
+                                <input name="startName" value="" placeholder="开始日期" id="sdate" class="Wdate ant-calendar-range-picker-input" onfocus="WdatePicker({ skin: 'twoer', dateFmt: 'yyyy-MM-dd', readOnly: true, maxDate: '#F{$dp.$D(\'edate\')}' })">
+                                <span class="ant-calendar-range-picker-separator"> ~ </span>
+                                <input name="endName" value="" placeholder="结束日期" class="ant-calendar-range-picker-input Wdate" id="edate" onfocus="WdatePicker({ skin: 'twoer', dateFmt: 'yyyy-MM-dd', readOnly: true, minDate: '#F{$dp.$D(\'sdate\')}', startDate: '#F{$dp.$D(\'sdate\',{d:+1})}' })"><!--<i class="anticon anticon-cross-circle ant-calendar-picker-clear"></i>--><!--<span class="ant-calendar-picker-icon"></span>-->
+                            </span>
+                        </span>
+                        <div class="date-Select cx-date-box fl">
+                            <span class="date-select" onclick="todayDate(this)">今天</span>
+                            <span class="date-select" onclick="yesterdayDate(this)">昨日</span>
+                            <span class="date-select" onclick="recentDate(this)">最近七天</span>
+                            <span class="date-select" onclick="monthDate(this)">最近30天</span>
+                        </div>
+                    </div>
+                    <div id="btnSearch" class="fl sear2">搜索</div>
+                    <div id="btnExport" class="fr hhbu" style="margin-right: 25px;"><a style="background-color:#4d6fa2;color: #fff;" id="exportLink" href="">导出</a></div>
+                </div>
+            </form>
+        </div>
+        <div id="datatable_wrapper" class="dataTables_wrapper no-footer clearfix cx-table-box" style="display: none;">
+            <table id="datatable" class="table table-border table-bordered table-hover table-bg table-sort dataTable no-footer" role="grid" aria-describedby="datatable_info" style="width: 100%;">
+                <thead>
+                    <tr role="row">
+                        <th rowspan="1" colspan="1">手机号</th>
+                        <th rowspan="1" colspan="1">姓名</th>
+                        <th rowspan="1" colspan="1">档次</th>
+                        <th rowspan="1" colspan="1">交易时间</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./lib/jquery.cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="lib/jquery.fileDownload.min.js"></script>
+    <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="lib/Moment.js"></script>
+    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="./lib/jquery.serializejson/jquery.serializejson.min.js"></script>
+    <script type="text/javascript" src="./js/meal_list.js"></script>
+</body>
+</html>

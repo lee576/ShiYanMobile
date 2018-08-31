@@ -1,0 +1,1 @@
+﻿var apiaddress = 'https://localhost:5001'

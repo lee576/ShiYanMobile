@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">       
+        <title>中国移动</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <!--<meta name="viewport" content="width=1170">-->
+		<link href="./cont/index.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./cont/cp_list.css">
+        <script type="text/javascript" src="./cont/jquery.min.js"></script>
+        <script type="text/javascript" src="./cont/Jaiden.common.js"></script>
+        <link href="./cont/bootstrap.min.css" rel="stylesheet">       
+        <link href="./cont/layout.css" rel="stylesheet">
+		<link href="css/css.css" rel="stylesheet">
+    </head> 
+    <body data-spy="scroll" data-target=".navbar-scroll">		
+        <div id="layout">
+            <div id="header">  
+				<div class="containerBox">
+					<div class="header-logo">
+						<a href="#" style="display:block;line-height:35px;color:#fff">
+							<span>湖北若火科技有限公司</span>
+						</a>
+					</div>
+					<div class="header-meta">						
+						<dl>
+							<dd class="d-userInfo">
+								<div class="dataBox">
+									<a href="#">
+										<img src="images/user.jpg"> 个人中心          
+									</a>
+								</div>
+							</dd>
+						</dl>
+					</div>
+					<div class="youx" style="display:none">
+						<ul class="youa">
+							<li class="three"><a href="login.html">退出</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"></div> 
+            
+		 <div id="side-menu" style="min-height: 797px;">
+			<div class="side-blank">
+				<dl>
+					<dd class="home"><a href="#" data-href="meal_list.html" class="active"><i><img src="images/aa_01.png"></i> 流量套餐</a></dd>
+				</dl>
+				
+				<dl>
+					<dd class="home"><a href="#" data-href="band_list.html"><i><img src="images/aa_02.png"></i> 在线报装</a></dd>
+				</dl>
+			</div>
+		</div>
+		<div id="layoutmain">
+			<iframe  id="iframeHtml" scrolling="yes" frameborder="0" src="meal_list.html" style="width:100%;min-height:797px;"></iframe>
+		</div>           
+    </div>
+	<script>
+	$(document).on('click',".side-blank dl dd a",function () {
+			var href = $(this).data('href');
+			$("#iframeHtml").attr('src',href);
+			$(this).addClass("active").parents("dl").siblings().find("a").removeClass("active");
+		});
+	$(".header-meta,.youx").mouseenter(function(){
+		$(".youx").show();
+	})
+	$(".header-meta,.youx").mouseleave(function(){
+		$(".youx").hide();
+	})
+		
+	</script>
+</body>
+</html>

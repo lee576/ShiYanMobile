@@ -1,0 +1,4 @@
+﻿services.AddScoped<Itb_areainfoService, tb_areainfoService>();
+services.AddScoped<Itb_userService, tb_userService>();
+
+});

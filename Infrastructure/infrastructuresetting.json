@@ -1,0 +1,3 @@
+{
+  "ConnetString": "server=47.100.212.107;uid=sa;pwd=lj123456;database=ShiYanMobile;Enlist=true;Pooling=true;Max Pool Size = 5120;Min Pool Size=0; Connection Lifetime=60;packet size=1024;"
+}

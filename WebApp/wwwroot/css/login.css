@@ -1,0 +1,50 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video,dl,dd ,button,input{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 16px;
+	font: inherit;
+	vertical-align: baseline;
+	font-family:微软雅黑,"Microsoft Yahei",Arial,Helvetica;
+}
+ol, ul {list-style: none;}
+.clear{clear:both;*display:inline;overflow:hidden;}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix{zoom:1;}
+.fl{ float:left;}
+.fr{ float:right;}
+a{text-decoration:none;}
+
+.load-logo{width:180px;}
+.banner-bg{position:fixed;left:0px;top:0px;width:100%;height:100%}
+.top-load{padding-top:40px;padding-left:8%;}
+.copyright{line-height:50px;text-align:center;color:#4a4a4a;font-size:14px;position:absolute;left:0px;width:100%;bottom:6%;}
+.load-content{position:absolute;left:50%;top:50%;width:350px;height:360px;margin-top:-200px;margin-left:-175px;background:#fff;box-shadow: 0px 0px 10px rgba(227,82,36,0.4);}
+.user-pa{width:22px;margin-top:8px;display:block;margin-left:8px;}
+.login-title{text-align:center;height: 18px;
+    line-height: 18px;
+    font-size: 16px;
+    color: #3c3c3c;
+    margin:25px 0;
+    font-weight: 700;}
+.load-content .field{
+	width: 300px;margin:20px auto;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+.load-content .field label,.load-content .field-da label{display:inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    background: #ddd;
+    text-align: center;
+    outline: 0;}
+.login-text{width:175px;padding:10px;outline:none;}
+.login-yan{width:125px;padding:10px;outline:none;}
+.J_Submit{display:block;width:300px;margin:0px auto;margin-top:30px;background:#4d6fa2;height:40px;line-height:40px;border-radius:5px;border:none;outline:none;color:#fff;text-align:Center;cursor:pointer;}
+.load-content .field-da{
+	width: 300px;margin:20px auto;
+    font-size: 14px;	
+}
+.field-ya{ border: 1px solid #ddd;}

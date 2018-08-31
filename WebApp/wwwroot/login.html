@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-touch-fullscreen" content="YES">
+    <meta name="format-detection" content="telephone=no">
+    <title>后台登录</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css" />
+    <script type="text/javascript" src="./cont/jquery.min.js"></script>
+    <script src="./lib/jquery.cookie/jquery.cookie.js"></script>
+    <script src="./lib/jquery.serializejson/jquery.serializejson.min.js"></script>
+    <script src="./lib/layer/2.4/layer.js"></script>
+    <script src="./js/webapi.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            height: 100%;
+            overflow: hidden
+        }
+    </style>
+</head>
+<body style="background:url(images/login_bg.png) no-repeat;background-size:100% auto;background-position:center top;">
+    <div class="banner-bg">
+        <div class="load-content">
+            <div class="login-title">
+                欢迎登录
+            </div>
+            <form id="loginForm" method="post" action="?action=Login" onsubmit="return false;">
+                <div class="field clearfix">
+                    <label for="TPL_username_1" class="fl"><img src="images/usera.png" class="user-pa"></label>
+                    <input type="text" id="UserName" class="login-text fl" name="UserName" value="" placeholder="请输入账号">
+                </div>
+                <div class="field clearfix">
+                    <label for="TPL_password_1" class="fl"><img src="images/passworda.png" class="user-pa"></label>
+                    <input type="password" id="Password" class="login-text fl" name="Password" value="" placeholder="请输入密码">
+                </div>
+                <div class="field-da clearfix">
+                    <div class="fl field-ya">
+                        <label for="TPL_username_1" class="fl"><img src="images/yan.png" class="user-pa"></label>
+                        <input type="text" id="ValidateCode" class="login-yan fl" name="ValidateCode" value="" placeholder="请输入验证码">
+                    </div>
+                    <img id="verifyCodeImg" class="fr" style="height:42px;width:95px;cursor:pointer;">
+                </div>
+                <button type="submit" class="J_Submit">登 录</button>
+            </form>
+        </div>
+    </div>
+    <div class="copyright">Copyright © 2018 - 2019 若火版权所有</div>
+    <script src="./js/login.js"></script>
+</body>
+</html>

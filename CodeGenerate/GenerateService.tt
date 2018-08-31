@@ -1,0 +1,102 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Configuration" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="SqlSugar" #>
+
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Web" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="Utilities" #>
+
+<#@ assembly name="$(SolutionDir)\packages\sqlSugar.4.6.4.9\lib\sqlsugar.dll" #>
+<#@ assembly name="$(SolutionDir)\Publish\Utilities.dll" #>
+<#@ output extension="cs" #>
+<# 
+     
+    //CTRL+S将会执行该文件的代码，自动生成实体
+
+    //当前项目目录
+    string projectDir = Host.ResolveAssemblyReference("$(ProjectDir)");
+
+    //解决方案目录
+    string solutionDir = Host.ResolveAssemblyReference("$(SolutionDir)");
+
+	//读取app.config 获得数据库连接串
+	var  doc = new XmlDocument();  
+    doc.Load(projectDir + "/app.config");
+
+	var _connectString = String.Empty;
+	XmlElement elem = (XmlElement)doc.SelectSingleNode("//appSettings//add[@key='ConnenctionString']"); 
+    if (elem != null)   
+    {  
+       _connectString = elem.GetAttribute("value");  
+    } 
+	else
+	{
+	   throw new InvalidOperationException(_connectString);
+	}
+
+	//生成数据库Model
+    var db = new SqlSugarClient(new ConnectionConfig() { ConnectionString = _connectString, DbType = DbType.SqlServer, IsAutoCloseConnection = true });
+    db.DbFirst.CreateClassFile(solutionDir +"/Models/DbModels","DbModel");
+
+	//生成数据库IService,Service
+	var tableInfoList = db.Utilities.TranslateCopy(db.DbMaintenance.GetTableInfoList());
+    foreach(DbTableInfo tabInfo in tableInfoList)
+    {
+	    var seChar= Path.DirectorySeparatorChar.ToString();
+        var tableName = tabInfo.Name;
+
+		//生成IService
+		string IServiceContent = 
+@"using DbModel;
+using Infrastructure.Service;
+namespace IService
+{
+    public interface I" + tableName + @"Service" + @" : IServiceBase<"+ tableName + @">" + @"
+    {
+	       
+    }
+}";
+		var fileIServicePath = (solutionDir + "/IService").TrimEnd('\\').TrimEnd('/') + string.Format(seChar + "{0}.cs", "I" + tableName + "Service");
+        FileHelper.CreateFile(fileIServicePath, IServiceContent, Encoding.UTF8);
+        
+		//生成Service
+		string ServiceContent = 
+@"using DbModel;
+using IService;
+using Infrastructure.Service;
+namespace Service
+{
+    public class " + tableName + @"Service" + @" : GenericService<"+ tableName + @">,I" + tableName + @"Service" + @"
+    {
+
+    }
+}";
+   		var fileServicePath = (solutionDir +"/Service").TrimEnd('\\').TrimEnd('/') + string.Format(seChar + "{0}.cs", tableName + "Service");
+        FileHelper.CreateFile(fileServicePath, ServiceContent, Encoding.UTF8);		
+    }
+
+	var startupServiceStr = @"";
+
+	foreach(DbTableInfo tabInfo in tableInfoList)
+    {
+	    var seChar= Path.DirectorySeparatorChar.ToString();
+        var tableName = tabInfo.Name;
+		startupServiceStr = startupServiceStr + @"services.AddScoped<I" + tableName + @"Service, " + tableName + @"Service>();" + "\r\n";
+    }
+	startupServiceStr = startupServiceStr + "\r\n" + "});";
+
+	var startupServicePath = solutionDir +"/startupServices.txt";
+    FileHelper.CreateFile(startupServicePath, startupServiceStr, Encoding.UTF8);
+#>

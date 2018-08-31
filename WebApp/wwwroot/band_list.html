@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">       
+        <title>湖北若火</title>
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="author" content="">
+        <!--<meta name="viewport" content="width=1170">-->
+		<link href="./cont/index.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="./cont/cp_list.css">
+        <script type="text/javascript" src="./cont/jquery.min.js"></script>
+        <script type="text/javascript" src="./cont/Jaiden.common.js"></script>
+        <link href="./cont/bootstrap.min.css" rel="stylesheet">       
+        <link href="./cont/layout.css" rel="stylesheet">
+        <link href="lib/capital.css" rel="stylesheet">
+		<link href="css/css.css" rel="stylesheet">
+    </head> 
+    <body style="background:#edf1f5">			
+			<div class="homeco" style="margin-top:20px;padding-bottom:10px;">
+				<div class="clearfix">
+					<div class="fl bu4">
+						<input class="fl sear1" type="text" placeholder="请输入姓名或手机号">
+					</div>
+					<div class="ant-form-item-control has-success fl">
+						<span class="width-full ant-calendar-picker fl">
+							<span class="ant-calendar-picker-input ant-input ant-input-lg">
+								<input name="startName" value="" placeholder="开始日期" id="sdate" class="Wdate ant-calendar-range-picker-input" onfocus="WdatePicker({skin:'twoer',dateFmt:'yyyy-MM-dd',readOnly:true,maxDate:'#F{$dp.$D(\'edate\')}'})">
+								<span class="ant-calendar-range-picker-separator"> ~ </span>
+								<input name="endName" value="" placeholder="结束日期" class="ant-calendar-range-picker-input Wdate" id="edate" onfocus="WdatePicker({skin:'twoer',dateFmt:'yyyy-MM-dd',readOnly:true,minDate:'#F{$dp.$D(\'sdate\')}',startDate:'#F{$dp.$D(\'sdate\',{d:+1})}'})"><!--<i class="anticon anticon-cross-circle ant-calendar-picker-clear"></i>--><!--<span class="ant-calendar-picker-icon"></span>-->
+							</span>
+						</span>
+						<div class="date-Select cx-date-box fl">
+							<span class="date-select" onclick="todayDate(this)">今天</span>
+							<span class="date-select" onclick="yesterdayDate(this)">昨日</span>
+							<span class="date-select" onclick="recentDate(this)">最近七天</span>
+							<span class="date-select" onclick="monthDate(this)">最近30天</span>
+						</div>
+					</div>
+					<div class="fl sear2">搜索</div>
+					<div class="fr hhbu" style="margin-right:25px;">导出</div>
+				</div>				
+			</div>	
+			<div class="Listevaluation">
+					<table class="table" style="width:100%;">
+						<thead>
+							<tr>
+								<td class="text-center">手机号</td>
+								<td class="text-center">姓名</td>
+								<td class="text-center">地址</td>
+								<td class="text-center">交易时间</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">135256985287</td>
+								<td class="text-center">张三</td>
+								<td class="text-center">石牌街道</td>
+								<td class="text-center">2018-10-01</td>
+							</tr>
+							<tr>
+								<td class="text-center">135256985287</td>
+								<td class="text-center">张三</td>
+								<td class="text-center">石牌街道</td>
+								<td class="text-center">2018-10-01</td>
+							</tr>
+							<tr>
+								<td class="text-center">135256985287</td>
+								<td class="text-center">张三</td>
+								<td class="text-center">石牌街道</td>
+								<td class="text-center">2018-10-01</td>
+							</tr>
+							
+						 </tbody>
+					</table> 
+			</div>	
+	<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+    <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>	
+<script type="text/javascript">
+        function getDateStr(AddDayCount) {
+            var dd = new Date();
+            dd.setDate(dd.getDate() + AddDayCount);   //获取AddDayCount天后的日期
+            var year = dd.getFullYear();
+            var mon = dd.getMonth() + 1;                             //获取当前月份的日期
+            if (mon < 10)
+                mon = '0' + mon;
+            var day = dd.getDate();
+            if (day < 10)
+                day = '0' + day;
+            return year + "-" + mon + "-" + day;
+        }
+        function todayDate(b) {
+            $(".cx-date-box").find('span').removeClass('active');
+            var self = $(b);
+            self.toggleClass('active');
+
+
+            $("#sdate").val(getDateStr(0));
+            $("#edate").val(getDateStr(0));
+        }
+        function yesterdayDate(b) {
+            $(".cx-date-box").find('span').removeClass('active');
+            var self = $(b);
+            self.toggleClass('active');
+            $("#sdate").val(getDateStr(-1));
+            $("#edate").val(getDateStr(-1));
+
+        }
+        function recentDate(b) {
+            $(".cx-date-box").find('span').removeClass('active');
+            var self = $(b);
+            self.toggleClass('active');
+            $("#sdate").val(getDateStr(-7));
+            $("#edate").val(getDateStr(0));
+        }
+        function monthDate(b) {
+            $(".cx-date-box").find('span').removeClass('active');
+            var self = $(b);
+            self.toggleClass('active');
+
+            $("#sdate").val(getDateStr(-30));
+            $("#edate").val(getDateStr(0));
+        }
+        function resetData() {
+            $('.cx-account-list option:first').prop('selected', 'selected');
+            $('.cx-canteen option:first').prop('selected', 'selected');
+            $('.cx-location option:first').prop('selected', 'selected');
+            $("#sdate").val('');
+            $("#edate").val('');
+        }
+    </script>	
+	</body>
+</html>
