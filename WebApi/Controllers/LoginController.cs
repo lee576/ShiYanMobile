@@ -13,7 +13,7 @@ namespace WebApi.Controllers
     /// <summary>
     /// 登录
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Produces("application/json")]
     [EnableCors("any")]
@@ -35,7 +35,6 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Route("CreateValidateCode")]
         public JsonResult CreateValidateCode()
         {
             //首先实例化验证码的类
@@ -61,7 +60,6 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("CheckLogin")]
         public JsonResult CheckLogin([FromBody]LoginViewModel model)
         {
             try

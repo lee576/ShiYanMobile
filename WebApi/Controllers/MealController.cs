@@ -18,7 +18,7 @@ namespace WebApi.Controllers
     /// <summary>
     /// 套餐
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Produces("application/json")]
     [EnableCors("any")]
@@ -45,7 +45,6 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [HttpGet]
         [Authorize]
-        [Route("Meals")]
         public JsonResult Meals(int sEcho,
             int iDisplayStart,
             int iDisplayLength,
@@ -116,7 +115,6 @@ namespace WebApi.Controllers
         /// <param name="endName">结束时间</param>
         /// <returns></returns>
         [HttpGet]
-        [Route("ExportExcel")]
         public FileContentResult ExportExcel(string nameOrMobile, string startName, string endName)
         {
             //查询套餐
@@ -137,7 +135,6 @@ namespace WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [Route("AddMeal")]
         public JsonResult AddMeal([FromBody]JObject obj)
         {
             try

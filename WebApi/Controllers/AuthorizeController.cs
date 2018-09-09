@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using IService;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -16,7 +14,7 @@ using ServiceStack.Redis;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Produces("application/json")]
     [EnableCors("any")]
@@ -41,7 +39,6 @@ namespace WebApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Token")]
         public IActionResult Token([FromBody]LoginViewModel model)
         {
             var findUser = _tb_user.FindByClause(t => t.username == model.UserName && t.password == model.Password);
